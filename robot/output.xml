@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.10.6 on darwin)" generated="2024-10-09T23:25:55.495988" rpa="false" schemaversion="5">
+<suite id="s1" name="Homework" source="/Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/homework.robot">
+<test id="s1-t1" name="Get csv testing" line="10">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-09T23:25:55.624706" level="INFO">${CSV_FILE1} = /Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/test_data_robot_csv.csv</msg>
+<var>${CSV_FILE1}</var>
+<arg>/Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/test_data_robot_csv.csv</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-09T23:25:55.624611" elapsed="0.000111"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-09T23:25:55.624884" level="INFO">${CSV_FILE2} = /Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/information.csv</msg>
+<var>${CSV_FILE2}</var>
+<arg>/Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/information.csv</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-09T23:25:55.624822" elapsed="0.000074"/>
+</kw>
+<kw name="Read Csv File To Associative" owner="CSVLibrary">
+<msg time="2024-10-09T23:25:55.625874" level="INFO">${DATA_CSV1} = [{'\ufeffusername': 'standard_user', 'password': 'secret_sauce', 'sex': 'm'}, {'\ufeffusername': 'problem_user', 'password': 'secret_sauce', 'sex': 'f'}, {'\ufeffusername': 'performance_glitch_user', ...</msg>
+<var>${DATA_CSV1}</var>
+<arg>${CSV_FILE1}</arg>
+<doc>Read CSV file and return its content as a Python list of dictionaries.</doc>
+<status status="PASS" start="2024-10-09T23:25:55.624973" elapsed="0.000915"/>
+</kw>
+<kw name="Read Csv File To Associative" owner="CSVLibrary">
+<msg time="2024-10-09T23:25:55.626326" level="INFO">${DATA_CSV2} = [{'\ufefffirstname': 'Chananpat', 'lasttname': 'Kitpatcharakulchot', 'Postalcode': '50310'}, {'\ufefffirstname': 'Atittaya', 'lasttname': 'Sangatit', 'Postalcode': '50000'}, {'\ufefffirstname': 'Somch...</msg>
+<var>${DATA_CSV2}</var>
+<arg>${CSV_FILE2}</arg>
+<doc>Read CSV file and return its content as a Python list of dictionaries.</doc>
+<status status="PASS" start="2024-10-09T23:25:55.625974" elapsed="0.000365"/>
+</kw>
+<kw name="Open Browser Chrome">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:55.626713" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/v1/index.html'.</msg>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-10-09T23:25:55.626617" elapsed="2.969321"/>
+</kw>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<status status="PASS" start="2024-10-09T23:25:55.626447" elapsed="2.969630"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-10-09T23:25:58.596255" elapsed="0.375577"/>
+</kw>
+<kw name="Input Username">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:58.973378" level="INFO">Typing text 'standard_user' into text field '//*[@id="user-name"]'.</msg>
+<arg>//*[@id="user-name"]</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:25:58.973007" elapsed="0.095894"/>
+</kw>
+<arg>${DATA_CSV1[0]['\ufeffusername']}</arg>
+<status status="PASS" start="2024-10-09T23:25:58.972357" elapsed="0.096664"/>
+</kw>
+<kw name="Input Password">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:59.069804" level="INFO">Typing text 'secret_sauce' into text field '//*[@id="password"]'.</msg>
+<arg>//*[@id="password"]</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.069656" elapsed="0.171922"/>
+</kw>
+<arg>${DATA_CSV1[0]['password']}</arg>
+<status status="PASS" start="2024-10-09T23:25:59.069214" elapsed="0.172492"/>
+</kw>
+<kw name="Click Login">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:59.242333" level="INFO">Clicking button '//*[@id="login-button"]'.</msg>
+<arg>//*[@id="login-button"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.242170" elapsed="0.525804"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:25:59.241932" elapsed="0.526203"/>
+</kw>
+<kw name="Verify Text Products">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//div[contains(text(),"Products")]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.768729" elapsed="0.016070"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:25:59.768423" elapsed="0.016530"/>
+</kw>
+<kw name="Click Add to Cart">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:59.785612" level="INFO">Clicking button '//*[@id="inventory_container"]/div/div[1]/div[3]/button'.</msg>
+<arg>//*[@id="inventory_container"]/div/div[1]/div[3]/button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.785450" elapsed="0.026767"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:59.812638" level="INFO">Clicking element '//*[@id="shopping_cart_container"]/a'.</msg>
+<arg>//*[@id="shopping_cart_container"]/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.812448" elapsed="0.054404"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:25:59.867190" level="INFO">Clicking element '//*[@id="cart_contents_container"]/div/div[2]/a[2]'.</msg>
+<arg>//*[@id="cart_contents_container"]/div/div[2]/a[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.867032" elapsed="0.052156"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-09T23:26:01.921989" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-09T23:25:59.919460" elapsed="2.003050"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:25:59.785206" elapsed="2.137821"/>
+</kw>
+<kw name="Verify Text Checkout Your Information">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//div[contains(text(),"Checkout: Your Information")]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-09T23:26:01.924941" elapsed="0.026216"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:26:01.924057" elapsed="0.027267"/>
+</kw>
+<kw name="Input Firstname">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:26:01.952637" level="INFO">Typing text 'Chananpat' into text field '//*[@id="first-name"]'.</msg>
+<arg>//*[@id="first-name"]</arg>
+<arg>${firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:26:01.952416" elapsed="0.036993"/>
+</kw>
+<arg>${DATA_CSV2[0]['\ufefffirstname']}</arg>
+<status status="PASS" start="2024-10-09T23:26:01.951668" elapsed="0.037836"/>
+</kw>
+<kw name="Input Lastname">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:26:01.990238" level="INFO">Typing text 'Kitpatcharakulchot' into text field '//*[@id="last-name"]'.</msg>
+<arg>//*[@id="last-name"]</arg>
+<arg>${lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:26:01.990096" elapsed="0.160635"/>
+</kw>
+<arg>${DATA_CSV2[0]['lasttname']}</arg>
+<status status="PASS" start="2024-10-09T23:26:01.989670" elapsed="0.161199"/>
+</kw>
+<kw name="Input Postalcode">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:26:02.151803" level="INFO">Typing text '50310' into text field '//*[@id="postal-code"]'.</msg>
+<arg>//*[@id="postal-code"]</arg>
+<arg>${postalcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:26:02.151669" elapsed="0.148190"/>
+</kw>
+<arg>${DATA_CSV2[0]['Postalcode']}</arg>
+<status status="PASS" start="2024-10-09T23:26:02.151215" elapsed="0.148804"/>
+</kw>
+<kw name="Click to Continue">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:26:02.300829" level="INFO">Clicking button '//*[@id="checkout_info_container"]/div/form/div[2]/input'.</msg>
+<arg>//*[@id="checkout_info_container"]/div/form/div[2]/input</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:26:02.300617" elapsed="0.182397"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-09T23:26:04.483697" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-09T23:26:02.483208" elapsed="2.001020"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:26:02.300291" elapsed="2.184345"/>
+</kw>
+<kw name="Verify Text Checkout Overview">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//div[contains(text(),"Checkout: Overview")]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-09T23:26:04.486332" elapsed="0.026097"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:26:04.485278" elapsed="0.027287"/>
+</kw>
+<kw name="Click to Finish">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-09T23:26:04.513393" level="INFO">Clicking element '//*[@id="checkout_summary_container"]/div/div[2]/div[8]/a[2]'.</msg>
+<arg>//*[@id="checkout_summary_container"]/div/div[2]/div[8]/a[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-09T23:26:04.513126" elapsed="0.087657"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-09T23:26:06.603036" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-09T23:26:04.600933" elapsed="2.002465"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:26:04.512838" elapsed="2.090972"/>
+</kw>
+<kw name="Verify Text THANK YOU FOR YOUR ORDER">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//*[@id="checkout_complete_container"]/h2</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-09T23:26:06.605514" elapsed="0.018156"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:26:06.604535" elapsed="0.019214"/>
+</kw>
+<status status="PASS" start="2024-10-09T23:25:55.624012" elapsed="10.999851"/>
+</test>
+<status status="PASS" start="2024-10-09T23:25:55.497423" elapsed="11.126670"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Homework">Homework</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.10.6 on darwin)" generated="2024-10-06T15:48:57.292898" rpa="false" schemaversion="5">
+<suite id="s1" name="Robot" source="/Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot">
+<suite id="s1-s1" name="Get Data Csv" source="/Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/get_data_csv.robot">
+<test id="s1-s1-t1" name="Get csv testing" line="8">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-06T15:48:57.321428" level="INFO">${csv_file} = /Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/test_data_robot_csv.csv</msg>
+<var>${csv_file}</var>
+<arg>/Users/11474715/Library/CloudStorage/OneDrive-BankofAyudhyaPublicCompanyLimited/Documents/robot/test_data_robot_csv.csv</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-06T15:48:57.321199" elapsed="0.000309"/>
+</kw>
+<kw name="Read Csv File To Associative" owner="CSVLibrary">
+<msg time="2024-10-06T15:48:57.322065" level="INFO">${DATA_CSV} = [{'\ufeffusername': 'standard_user', 'password': 'secret_sauce', 'sex': 'm'}, {'\ufeffusername': 'problem_user', 'password': 'secret_sauce', 'sex': 'f'}, {'\ufeffusername': 'performance_glitch_user', ...</msg>
+<var>${DATA_CSV}</var>
+<arg>${csv_file}</arg>
+<doc>Read CSV file and return its content as a Python list of dictionaries.</doc>
+<status status="PASS" start="2024-10-06T15:48:57.321678" elapsed="0.000444"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${DATA_CSV[2]}[sex]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-10-06T15:48:57.322270" elapsed="0.000383"/>
+</kw>
+<status status="PASS" start="2024-10-06T15:48:57.320569" elapsed="0.002213"/>
+</test>
+<status status="PASS" start="2024-10-06T15:48:57.306618" elapsed="0.016509"/>
+</suite>
+<status status="PASS" start="2024-10-06T15:48:57.295851" elapsed="0.027792"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot">Robot</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Get Data Csv">Robot.Get Data Csv</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
