@@ -11,7 +11,8 @@ Get csv testing
     ${CSV_FILE1}    set Variable    ${CURDIR}/test_data_robot_csv.csv
     ${CSV_FILE2}    set Variable    ${CURDIR}/information.csv
     ${DATA_CSV1}     Read Csv File To Associative    ${CSV_FILE1}
-     ${DATA_CSV2}     Read Csv File To Associative    ${CSV_FILE2}
+    ${DATA_CSV2}     Read Csv File To Associative    ${CSV_FILE2}
+   
     #Log to console    ${DATA_CSV2}
 
     Open Browser Chrome    ${url}   ${browser}
@@ -21,6 +22,7 @@ Get csv testing
     Click Login
     Verify Text Products
     Click Add to Cart
+    Check Price    ${price2}
     Verify Text Checkout Your Information
     Input Firstname    ${DATA_CSV2[0]['\ufefffirstname']}
     Input Lastname     ${DATA_CSV2[0]['lasttname']}
@@ -52,11 +54,20 @@ Verify Text Products
 Click Add to Cart 
     Click Button    //*[@id="inventory_container"]/div/div[1]/div[3]/button
     Click Element    //*[@id="shopping_cart_container"]/a
+    
+Check Price
+    [Arguments]    ${expected_price} 
+    ${price_from_website}    Get Text    //*[@id="cart_contents_container"]/div/div[1]/div[3]/div[2]/div[2]/div
+    Log To Console    ${price_from_website}
+    
+    # เปรียบเทียบราคาใน YAML กับหน้าเว็บ
+    Should Be Equal    ${price_from_website}    ${expected_price}
+    
     Click Element    //*[@id="cart_contents_container"]/div/div[2]/a[2]
-    Sleep    2s
-
+    
 Verify Text Checkout Your Information
     Wait Until Element Is Visible    //div[contains(text(),"Checkout: Your Information")]    timeout=10s 
+    
 Input Firstname
     [Arguments]    ${firstname}
     Input Text    //*[@id="first-name"]    ${firstname}
@@ -71,14 +82,14 @@ Input Postalcode
 
 Click to Continue
     Click Button    //*[@id="checkout_info_container"]/div/form/div[2]/input
-    Sleep    2s
+    
 
 Verify Text Checkout Overview
     Wait Until Element Is Visible    //div[contains(text(),"Checkout: Overview")]    timeout=10s
 
 Click to Finish
     Click Element    //*[@id="checkout_summary_container"]/div/div[2]/div[8]/a[2]
-    Sleep    2s
+    
 
 Verify Text THANK YOU FOR YOUR ORDER
     Wait Until Element Is Visible    //*[@id="checkout_complete_container"]/h2    timeout=10s
